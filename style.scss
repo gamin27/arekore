@@ -1,0 +1,36 @@
+$font-color: #4f4f4f;
+$key-color: #ffa41b;
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0 auto;
+  padding: 4rem;
+  color: $font-color;
+  max-width: 50rem;
+}
+header {
+  font-size: 2rem;
+}
+section {
+  border-bottom: 1px solid $font-color;
+  padding-top: 0.8rem;
+  padding-bottom: 0.4rem;
+}
+ul {
+  margin-top: 2rem;
+}
+li {
+  &::before {
+    content: "-";
+    margin-right: 0.8rem;
+  }
+}
+a {
+  font-size: 0.8rem;
+  color: $key-color;
+  border-bottom: 1px solid $key-color;
+}
+footer {
+  margin-top: 4rem;
+  border-top: 1px solid $font-color;
+  font-size: 0.4rem;
+}

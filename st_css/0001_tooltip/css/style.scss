@@ -1,0 +1,66 @@
+@mixin not-custom() {
+  content: attr(aria-label);
+  display: block;
+  position: absolute;
+}
+/*体裁カスタマイズ*/
+@mixin custom() {
+  top: 100%;
+  left: -25%;
+  font-size: 1.2rem;
+  background-color: #4e4e4e;
+  color: #fff;
+  margin-top: 0.8rem;
+  border-radius: 0.2rem;
+  padding: 0.4rem;
+  width: 12rem;
+  text-align: left;
+}
+
+/*三角ができる*/
+@mixin arrow() {
+  position: absolute;
+  display: block;
+  content: "";
+  top: 100%;
+  right:0;
+  left: 0;
+  margin: -1rem auto 0;
+  border: 1rem solid transparent;
+  border-bottom-color: #4e4e4e;
+  height: 0;
+  width: 0;
+}
+
+.tooltip {
+  position: relative;
+  color: goldenrod;
+  display: inline-block;
+
+  &:focus {
+    &::before {
+      @include arrow();
+    }
+    &::after {
+      @include not-custom();
+      @include custom();
+    }
+  }
+  &:hover {
+    &::before {
+      @include arrow();
+    }
+    &::after {
+      @include not-custom();
+      @include custom();
+    }
+  }
+}
+
+/*体裁カスタマイズ*/
+body {
+  padding: 4rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
