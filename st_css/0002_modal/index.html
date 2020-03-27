@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ツールチップ・ドロップダウンメニュー	</title>
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+  <a href="#" aria-label="Close modal" id="modalOpen">
+    open modal
+  </a>
+
+  <!-- モーダル -->
+  <article class="modal" id="modal">
+    <!-- モーダルの外をクリックしたときも閉じる -->
+    <div class="modal__overlay js_close"></div>
+    <div class="modal__content">      
+      <!-- キャンセルボタン -->
+      <button aria-label="Close modal" class="modal__close js_close">&times;</button>
+      <!-- 表示するコンテンツ -->
+      <div>modal content</div>
+    </div>
+  </article>
+
+  <script>
+    const el_open = document.getElementById('modalOpen');
+    const el_close = Array.from(document.getElementsByClassName('js_close'));
+    const el_modal = document.getElementById('modal');
+
+    //open処理
+    el_open.addEventListener('click', function(){
+      el_modal.classList.add('active');
+    });
+
+    //close処理
+    el_close.forEach(function(index) {
+      index.addEventListener('click', function() {
+        el_modal.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
