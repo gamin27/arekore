@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+//定数
+$main-color: #4e4e4e;
+$bg-color: #f4f4f4;
+
+/*--------------------
+ * common
+ *--------------------*/
+html {
+	font-size: 62.5%;
+}
+body {
+	font-family: 'Montserrat', 'Noto Sans CS', sans-serif;
+	color: $main-color;
+	font-size: 1.6rem;
+	font-weight: 300;
+	background-color: $bg-color;
+	letter-spacing: 0.05em;
+}
+header {
+	padding: {
+		top: 8rem;
+	}
+	text-align: center;
+	font-size: 2.4rem;
+}
+main {
+	margin: {
+		top: 2rem;
+	}
+}
+.menu-btn {
+	display: block;
+	position: fixed;
+	z-index: 100;
+	top: 2rem;
+	right: 2rem;
+	-webkit-appearance:none;
+	appearance:none;
+	margin: auto;
+	border-radius: 2px;
+	padding: 8px;
+	background-color: $main-color;
+	color: $bg-color;
+	font-size: 1.6rem;
+	border:none;
+	outline: none;
+	overflow : hidden;
+	cursor: pointer;
+}
+
+.gnav {
+	position: fixed;
+	top:0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	opacity: 0;
+	pointer-events: none;
+	padding: {
+		top: 16rem;
+	}
+	background-color: $main-color;
+	color: $bg-color;
+	text-align: center;
+	transition: opacity ease-out 0.2s;
+
+	.is-active-nav & {
+		opacity: 1;
+		pointer-events: auto;
+		transition-duration: 0.4s;
+	}
+
+	&__item {
+		margin-top: 2rem;
+		opacity: 0;
+		transform: translateX(-20%);
+		transition: {
+			property: opacity, transform;
+			duration: 0.2s;
+			timing-function: ease-out;
+		};
+
+		> a {
+			color: $bg-color;
+			text-transform: capitalize;
+		}
+
+		.is-active-nav & {
+			opacity: 1;
+			transform: translateX(0);
+			transition: {
+				duration: 0.4s;
+				timing-function: cubic-bezier(0, -0.5, 0, 1.8);
+			};
+
+			@for $i from 1 through 5 {
+				&:nth-child(#{$i}) {
+					transition-delay: calc(0.07s * #{$i});
+				}
+			}
+		}
+	}
+}
+
+/*--------------------
+ * pc
+ *--------------------*/
+@media screen and (min-width:641px) {
+	.gnav {
+		display: none;
+	}
+}
