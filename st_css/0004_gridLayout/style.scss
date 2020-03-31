@@ -1,0 +1,166 @@
+@charset "UTF-8";
+/* start arekore custom*/
+//定数
+$main-color: #4e4e4e;
+$bg-color: #f4f4f4;
+html {
+	font-size: 62.5%;
+}
+body {
+	font-family: 'Montserrat', 'Noto Sans CS', sans-serif;
+	color: $main-color;
+	font-size: 1.6rem;
+	font-weight: 300;
+	background-color: $bg-color;
+	letter-spacing: 0.05em;
+}
+header {
+	padding: {
+		top: 8rem;
+	}
+	text-align: center;
+	font-size: 2.4rem;
+}
+$main-padding-side: 20px;
+main {
+	margin: {
+		top: 2rem;
+	}
+	padding: 0 $main-padding-side;
+	box-sizing: border-box;
+}
+/* end arekore custom*/
+
+
+/*書く要素に遅延時間(delay)を設定する関数
+ * @param line-num: gridの行数
+ * @param colum-num: gridの列数
+ */
+@mixin gridDelay($line-num, $column-num) {
+	@for $j from 0 to $line-num {
+		@for $i from 1 through $column-num {
+			&:nth-child(#{$i + $j * $column-num}){
+				.is-active-nav & {
+					transition-delay: calc(0.07s * #{$i} + 0.07s * #{$j});
+				}
+			}
+		}
+	}
+}
+
+.menu-btn {
+	display: block;
+	position: fixed;
+	z-index: 100;
+	top: 2rem;
+	right: 2rem;
+	-webkit-appearance:none;
+	appearance:none;
+	margin: auto;
+	border-radius: 2px;
+	padding: 8px;
+	background-color: $main-color;
+	color: $bg-color;
+	font-size: 1.6rem;
+	border:none;
+	outline: none;
+	overflow : hidden;
+	cursor: pointer;
+}
+
+.gnav {
+	position: fixed;
+	top:0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	opacity: 0;
+	pointer-events: none;
+	padding: 6.4rem 1.6rem;
+	background-color: $main-color;
+	text-align: center;
+	transition: opacity ease-out 0.2s;
+
+	.is-active-nav & {
+		opacity: 1;
+		pointer-events: auto;
+		transition-duration: 0.2s;
+	}
+}
+/*ウィンドウサイズに対するグリッド種類は3パターン用意*/
+$box-size-1: 1024px;
+$box-size-2: 824px;
+$box-size-3: 320px;
+$columns-num-1: 6;
+$columns-num-2: 4;
+$columns-num-3: 3;
+
+.grid {
+  display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	margin: auto;
+	grid-auto-rows: $box-size-1/$columns-num-1;
+	box-sizing: border-box;
+	width: $box-size-1;
+
+	@media screen and (max-width: $box-size-1 + $main-padding-side * 2) {
+		width: $box-size-2;
+		grid-auto-rows: $box-size-2/$columns-num-1;
+	}
+	@media screen and(max-width:$box-size-2 + $main-padding-side * 2) {
+		width: $box-size-3;
+		grid-auto-rows: $box-size-3/$columns-num-2;
+		grid-template-columns: repeat($columns-num-2, 1fr);
+	}
+	@media screen and(max-width:$box-size-3 + $main-padding-side * 2) {
+		box-sizing: border-box;
+		width: 100%;
+		grid-auto-rows: $box-size-3/$columns-num-3;
+		grid-template-columns: repeat($columns-num-3, 1fr);
+
+	}
+  &__item {
+    list-style: none;
+    border: 1px solid $main-color;
+		padding: 2px;
+		background-color: #fff;
+		border-radius: 2px;
+		opacity: 0;
+		transition: {
+			property: opacity;
+			duration: 0.2s;
+			timing-function: ease-out;
+		};
+
+		.is-active-nav & {
+			opacity: 1;
+			transition: {
+				duration: 0.7s;
+				timing-function: cubic-bezier(0, -0.5, 0, 1);
+			};
+		}
+
+		/*絡む数に応じて遅延時間を調整*/
+		@include gridDelay(36/$columns-num-1, $columns-num-1);
+
+		@media screen and (max-width: $box-size-1 + $main-padding-side * 2) {
+			/*上の場合と同じなので空*/
+		}
+		@media screen and(max-width:$box-size-2 + $main-padding-side * 2) {
+			@include gridDelay(36/$columns-num-2, $columns-num-2);
+		}
+		@media screen and(max-width:$box-size-3 + $main-padding-side * 2) {
+			@include gridDelay(36/$columns-num-3, $columns-num-3);
+		}
+
+		/*要素にコンテンツを追加*/
+    @for $i from 1 through 36 {
+      &:nth-child(#{$i}){
+				&:after {
+					content: "c#{$i}";
+				}
+			}
+		}
+  }
+}
