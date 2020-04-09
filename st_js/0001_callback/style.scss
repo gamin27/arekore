@@ -1,0 +1,74 @@
+@charset "UTF-8";
+$main-color: #4e4e4e;
+$bg-color: #f4f4f4;
+$key-color: #ffa41b;
+$rGray-color: #e0e0e0;
+
+body {
+  font-size: 62.5%;
+  color: $main-color;
+}
+.title {
+  font-size: 4rem;
+  text-align: center;
+}
+.main {
+  text-align: center;
+}
+
+.box {
+  position: fixed;
+  width: 100%;
+  display: block;
+  z-index: 100;
+}
+
+.change-btn {
+  display: block;
+	appearance:none;
+	margin: auto;
+	border-radius: 2px;
+	padding: 1.6rem;
+	background-color: $main-color;
+	color: $bg-color;
+	font-size: 1.6rem;
+	border:none;
+	outline: none;
+	overflow : hidden;
+	cursor: pointer;
+}
+
+.curtain {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $bg-color;
+  transition: all 0.5s ease-out;
+  
+  &--rgray {
+    background-color: $rGray-color;
+    transform: translateX(-100%);
+
+    &.is-active {
+      transform: translateX(0);
+    }
+  }
+  &--gray {
+    background-color: $main-color;
+    transform: translateX(-100%);
+
+    &.is-active {
+      transform: translateX(0);
+    }
+  }
+  &--key {
+    background-color: $key-color;
+    transform: translateX(-100%);
+
+    &.is-active {
+      transform: translateX(0);
+    }
+  }
+}
