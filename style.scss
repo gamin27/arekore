@@ -10,6 +10,16 @@ body {
 header {
   font-size: 2rem;
 }
+
+h1 a {
+  color: $font-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $key-color;
+  }
+}
+
 section {
   border-bottom: 1px solid $font-color;
   padding-top: 0.8rem;

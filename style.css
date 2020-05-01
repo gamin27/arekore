@@ -10,6 +10,15 @@ header {
   font-size: 2rem;
 }
 
+h1 a {
+  color: #4f4f4f;
+  text-decoration: none;
+}
+
+h1 a:hover {
+  color: #ffa41b;
+}
+
 section {
   border-bottom: 1px solid #4f4f4f;
   padding-top: 0.8rem;
