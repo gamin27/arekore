@@ -13,10 +13,12 @@ header {
 h1 a {
   color: #4f4f4f;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.5s;
 }
 
 h1 a:hover {
-  color: #ffa41b;
+  opacity: 0.5;
 }
 
 section {
@@ -50,6 +52,7 @@ p {
 
 a {
   color: #ffa41b;
+  border-bottom: 1px solid #ffa41b;
 }
 
 footer {
