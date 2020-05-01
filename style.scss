@@ -11,14 +11,15 @@ header {
   font-size: 2rem;
 }
 
-h1 a {
-  color: $font-color;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0,0,0,0);
-  transition: all 0.5s;
+h1 {
+  a {
+    color: $font-color;
+    border-bottom: 1px solid rgba(0,0,0,0);
+    transition: opacity 0.5s;
 
-  &:hover {
-    opacity: 0.5;
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -54,4 +55,8 @@ footer {
   margin-top: 4rem;
   border-top: 1px solid $font-color;
   font-size: 0.4rem;
+
+  a {
+    border-bottom: 1px solid rgba(0,0,0,0);
+  }
 }
